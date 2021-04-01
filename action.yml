@@ -1,0 +1,5 @@
+name: 'Java Dependency Tree Diff'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
