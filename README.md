@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2.3.4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: tasso94/java-dependency-tree-diff
+      - uses: tasso94/java-dependency-tree-diff@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
