@@ -12,11 +12,12 @@ on: [pull_request]
 jobs:
     build:
       runs-on: ubuntu-latest
+      if: ${{ github.event.label.name == 'java-dependency-tree' }}
       steps:
       - uses: actions/checkout@v2.3.4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: tasso94/java-dependency-tree-diff@main
+      - uses: camunda/java-dependency-tree-diff@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
