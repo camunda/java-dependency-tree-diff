@@ -7,7 +7,9 @@ Add the following workflow to your GitHub repository under `.github/workflows/ma
 ```yaml
 name: Java Dependency Tree Diff
 
-on: [pull_request]
+on:
+  pull_request:
+    types: [ labeled ]
 
 jobs:
     build:
