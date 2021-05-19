@@ -10,11 +10,11 @@ if [[ $(git diff origin/master HEAD --name-only | grep pom.xml$ | wc -c) -ne 0 ]
 
     cd /github/workspace
 
-    mvn -T 16C -s maven-settings.xml clean package -DskipTests -Dskip-third-party-bom=false -Dthird-party-bom-scopes="compile|provided|runtime|test"
+    mvn -T 16C -s /maven-settings.xml clean package -DskipTests -Dskip-third-party-bom=false -Dthird-party-bom-scopes="compile|provided|runtime|test"
     find . -name 'dependencies.txt' -exec rsync -R \{\} /pr \;
 
     git checkout -f origin/master
-    mvn -T 16C -s maven-settings.xml clean package -DskipTests -Dskip-third-party-bom=false -Dthird-party-bom-scopes="compile|provided|runtime|test"
+    mvn -T 16C -s /maven-settings.xml clean package -DskipTests -Dskip-third-party-bom=false -Dthird-party-bom-scopes="compile|provided|runtime|test"
     find . -name 'dependencies.txt' -exec rsync -R \{\} /master \;
 
     echo -e "<details><summary>Dependency Tree Diff</summary><p>\n" >/github/workspace/dep-tree-diff.txt
