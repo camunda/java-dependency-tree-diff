@@ -6,7 +6,7 @@ set -e
 git fetch
 
 apt update && apt -y install ruby
-gem install faraday:1.10.0 multipart-post:2.2.0 octokit
+gem install faraday:1.10.0 multipart-post:2.2.0 public_suffix:4.0.7 octokit
 
 if [[ $(git diff origin/$GITHUB_BASE_REF HEAD --name-only | grep pom.xml$ | wc -c) -ne 0 ]]; then
     apt install -y nodejs npm rsync
