@@ -5,19 +5,20 @@ set -e
 
 git fetch
 
-apt update && apt -y install ruby
-gem install octokit
+apt update && apt -y install ruby bundler
+bundle install --gemfile=/Gemfile
 
 if [[ $(git diff origin/$GITHUB_BASE_REF HEAD --name-only | grep pom.xml$ | wc -c) -ne 0 ]]; then
     apt install -y nodejs npm rsync
 
     cd /github/workspace
-
+    
     mvn -T 16C -s /maven-settings.xml clean package -DskipTests -Dskip-third-party-bom=false -Dthird-party-bom-scopes="compile|provided|runtime|test"
     find . -name 'dependencies.txt' -exec rsync -R \{\} /pr \;
 
     git checkout -f origin/GITHUB_BASE_REF
     mvn -T 16C -s /maven-settings.xml clean package -DskipTests -Dskip-third-party-bom=false -Dthird-party-bom-scopes="compile|provided|runtime|test"
+
     find . -name 'dependencies.txt' -exec rsync -R \{\} /base \;
 
     echo -e "<details><summary>Dependency Tree Diff</summary><p>\n" >/github/workspace/dep-tree-diff.txt
