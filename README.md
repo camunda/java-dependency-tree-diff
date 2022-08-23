@@ -1,5 +1,8 @@
 ## GitHub Action: java-dependency-tree-diff
 
+Use this branch for camunda enterprise repositories.
+For non-enterprise repositories, you can use the [main](https://github.com/camunda/java-dependency-tree-diff/tree/main) branch.
+
 ### Setup
 
 Add the following workflow to your GitHub repository under `.github/workflows/main.yml` to enable the action:
@@ -19,9 +22,11 @@ jobs:
       - uses: actions/checkout@v2.3.4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: camunda/java-dependency-tree-diff@main
+      - uses: camunda/java-dependency-tree-diff@enterprise
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEXUS_USR: ${{ secrets.NEXUS_USR }}
+          NEXUS_PSW: ${{ secrets.NEXUS_PSW }}
 ```
 
 ### License
