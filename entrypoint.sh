@@ -5,7 +5,7 @@ set -e
 
 git fetch
 
-apt update && apt -y install ruby
+apt update && apt -y install ruby bundler
 bundle install
 
 if [[ $(git diff origin/$GITHUB_BASE_REF HEAD --name-only | grep pom.xml$ | wc -c) -ne 0 ]]; then
