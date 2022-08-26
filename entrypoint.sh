@@ -16,7 +16,7 @@ if [[ $(git diff origin/$GITHUB_BASE_REF HEAD --name-only | grep pom.xml$ | wc -
     mvn -T 16C -s /maven-settings.xml clean package -DskipTests -Dskip-third-party-bom=false -Dthird-party-bom-scopes="compile|provided|runtime|test"
     find . -name 'dependencies.txt' -exec rsync -R \{\} /pr \;
 
-    git checkout -f origin/GITHUB_BASE_REF
+    git checkout -f origin/$GITHUB_BASE_REF
     mvn -T 16C -s /maven-settings.xml clean package -DskipTests -Dskip-third-party-bom=false -Dthird-party-bom-scopes="compile|provided|runtime|test"
 
     find . -name 'dependencies.txt' -exec rsync -R \{\} /base \;
