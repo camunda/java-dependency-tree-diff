@@ -10,6 +10,7 @@ bundle install --gemfile=/Gemfile
 
 if [[ $(git diff origin/$GITHUB_BASE_REF HEAD --name-only | grep pom.xml$ | wc -c) -ne 0 ]]; then
     apt install -y nodejs npm rsync
+	npm install -g npm@6.14.12
 
     cd /github/workspace
     
