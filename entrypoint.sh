@@ -10,7 +10,10 @@ bundle install --gemfile=/Gemfile
 
 if [[ $(git diff origin/$GITHUB_BASE_REF HEAD --name-only | grep pom.xml$ | wc -c) -ne 0 ]]; then
     apt install -y nodejs npm rsync
-	npm install -g npm@6.14.12
+
+    npm install -g npm@6.14.12
+    npm set @xlts.dev:registry https://${XLTS_REGISTRY}/
+    npm set //${XLTS_REGISTRY}/:_authToken ${XLTS_AUTH_TOKEN}
 
     cd /github/workspace
     
