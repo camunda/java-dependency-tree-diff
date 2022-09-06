@@ -11,7 +11,7 @@ bundle install --gemfile=/Gemfile
 if [[ $(git diff origin/$GITHUB_BASE_REF HEAD --name-only | grep pom.xml$ | wc -c) -ne 0 ]]; then
     curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
     apt update && \
-    apt install -y nodejs
+    apt install -y nodejs rsync
 
     npm set @xlts.dev:registry https://${XLTS_REGISTRY}/
     npm set //${XLTS_REGISTRY}/:_authToken ${XLTS_AUTH_TOKEN}
