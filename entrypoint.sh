@@ -10,8 +10,8 @@ bundle install --gemfile=/Gemfile
 
 if [[ $(git diff origin/$GITHUB_BASE_REF HEAD --name-only | grep pom.xml$ | wc -c) -ne 0 ]]; then
     # installing nodejs 14.x and config xlts registry is required for platform-ee build
-	# consider splitting 'enterprise' branch if this step is unnecessary for the other repositories
-	# so far only rpa-bridge-ee is the other repository that uses the branch
+    # consider splitting 'enterprise' branch if this step is unnecessary for the other repositories
+    # so far only rpa-bridge-ee is the other repository that uses the branch
     curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
     apt update && \
     apt install -y nodejs rsync
