@@ -13,7 +13,7 @@ if [[ $(git diff origin/$GITHUB_BASE_REF HEAD --name-only | grep pom.xml$ | wc -
     curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
     apt update
     
-    apt install -y nodejs npm rsync
+    apt install -y nodejs node-gyp npm rsync
 
     cd /github/workspace
 
