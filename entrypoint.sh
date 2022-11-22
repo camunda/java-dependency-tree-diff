@@ -9,6 +9,10 @@ apt update && apt -y install ruby bundler
 bundle install --gemfile=/Gemfile
 
 if [[ $(git diff origin/$GITHUB_BASE_REF HEAD --name-only | grep pom.xml$ | wc -c) -ne 0 ]]; then
+    # Pin version of NodeJS to 14.X
+    curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
+    apt update
+    
     apt install -y nodejs npm rsync
 
     cd /github/workspace
