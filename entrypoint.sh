@@ -17,11 +17,11 @@ if [[ $(git diff origin/$GITHUB_BASE_REF HEAD --name-only | grep pom.xml$ | wc -
 
     cd /github/workspace
 
-    mvn -T 16C clean package -DskipTests -Dskip-third-party-bom=false -Dthird-party-bom-scopes="compile|provided|runtime|test" -U
+    mvn -T 16C dependency:list -DoutputAbsoluteArtifactFilename=true -DoutputFile=dependencies.txt -Dsort=true -Dskip-third-party-bom=false -Dthird-party-bom-scopes="compile|provided|runtime|test" -U
     find . -name 'dependencies.txt' -exec rsync -R \{\} /pr \;
 
     git checkout -f origin/$GITHUB_BASE_REF
-    mvn -T 16C clean package -DskipTests -Dskip-third-party-bom=false -Dthird-party-bom-scopes="compile|provided|runtime|test"
+    mvn -T 16C dependency:list -DoutputAbsoluteArtifactFilename=true -DoutputFile=dependencies.txt -Dsort=true -Dskip-third-party-bom=false -Dthird-party-bom-scopes="compile|provided|runtime|test"
     find . -name 'dependencies.txt' -exec rsync -R \{\} /base \;
 
     echo -e "<details><summary>Dependency Tree Diff</summary><p>\n" >/github/workspace/dep-tree-diff.txt
