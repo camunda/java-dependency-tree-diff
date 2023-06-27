@@ -22,8 +22,6 @@ jobs:
       - uses: camunda/java-dependency-tree-diff@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NEXUS_USR: ${{ secrets.NEXUS_USR }}
-          NEXUS_PSW: ${{ secrets.NEXUS_PSW }}
 ```
 
 ### License
