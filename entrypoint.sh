@@ -3,10 +3,11 @@
 set -e
 # let script stop when one of the commands fails (e.g. one of the Maven builds)
 
-git fetch
-
-apt update && apt -y install ruby bundler
+apt update && apt -y install git ruby bundler
 bundle install --gemfile=/Gemfile
+
+git config --global --add safe.directory /github/workspace
+git fetch
 
 if [[ $(git diff origin/$GITHUB_BASE_REF HEAD --name-only | grep pom.xml$ | wc -c) -ne 0 ]]; then
     # installing nodejs 14.x and config xlts registry is required for platform-ee build
