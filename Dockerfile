@@ -1,4 +1,4 @@
-FROM maven:3.6.3-jdk-11
+FROM maven:3.8.5-openjdk-17-slim
 
 ADD entrypoint.sh /entrypoint.sh
 ADD add-comment.rb /add-comment.rb
